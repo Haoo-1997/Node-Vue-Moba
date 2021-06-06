@@ -3,6 +3,7 @@
        <h1>分类列表</h1>
        <el-table :data="items">
         <el-table-column prop="_id" label="ID" width="220"></el-table-column>
+        <el-table-column prop="parent.name" label="上级分类"></el-table-column>
         <el-table-column prop="name" label="分类名称"></el-table-column>
         <el-table-column
         fixed="right"
@@ -30,16 +31,19 @@ export default {
     async fetch () {
       // console.log(this.$http.get('categories'))
       // const res = await this.$http.get(`categories/${this.id}`)
-      const res = await this.$http.get('categories')
+
+      // 拿到数据，显示在界面上
+      const res = await this.$http.get('rest/categories')
       this.items = res.data
     },
+    // 删除其中的某条数据
     async remove (row) {
       this.$confirm(`是否确定要删除分类 "${row.name}"`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(async () => {
-        await this.$http.delete(`categories/${row._id}`)
+        await this.$http.delete(`rest/categories/${row._id}`)
         this.$message({
           type: 'success',
           message: '删除成功!'
