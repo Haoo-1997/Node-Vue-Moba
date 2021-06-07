@@ -19,6 +19,7 @@
                     class="avatar-uploader"
                     :action="$http.defaults.baseURL + '/upload'"
                     :show-file-list="false"
+                    :headers=getAuthHeaders()
                     :on-success="res => $set(item, 'image', res.url)">
                     <img v-if="item.image" :src="item.image" class="avatar">
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -77,29 +78,3 @@ export default {
   }
 }
 </script>
-
-<style type="text/css">
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    min-width: 5rem;
-    height: 5rem;
-    line-height: 5rem;
-    text-align: center;
-  }
-  .avatar {
-    min-width: 5rem;
-    height: 5rem;
-    display: block;
-  }
-</style>

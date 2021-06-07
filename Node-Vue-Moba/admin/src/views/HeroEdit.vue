@@ -2,9 +2,9 @@
     <div class="about">
         <h1>{{id ? '编辑' : '新建'}}英雄</h1>
         <el-form label-width="120px" @submit.native.prevent="save">
-            <el-tabs type="border-card" value="skills">
-              <el-tab-pane label="基本信息">
-                <el-form-item label="名称">
+            <el-tabs type="border-card" value="basicMess">
+              <el-tab-pane label="基本信息" name="basicMess">
+                <el-form-item label="名字">
                   <el-input v-model="model.name"></el-input>
                 </el-form-item>
 
@@ -17,6 +17,7 @@
                   class="avatar-uploader"
                   :action="$http.defaults.baseURL + '/upload'"
                   :show-file-list="false"
+                  :headers="getAuthHeaders()"
                   :on-success="afterUpload">
                   <img v-if="model.avatar" :src="model.avatar" class="avatar">
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -69,7 +70,7 @@
                   <el-input type="textarea" v-model="model.teamTips"></el-input>
                 </el-form-item>
               </el-tab-pane>
-              <el-tab-pane label="技能" name="skills">
+              <el-tab-pane label="技能" name="skill">
                 <el-button size="small" @click="model.skills.push({})"><i class="el-icon-plus"></i>添加技能</el-button>
                 <el-row type="flex" style="flex-wrap: wrap">
                   <el-col :md="12" v-for="(item, i) in model.skills" :key="i">
@@ -82,6 +83,7 @@
                       class="avatar-uploader"
                       :action="$http.defaults.baseURL + '/upload'"
                       :show-file-list="false"
+                      :headers="getAuthHeaders()"
                       :on-success="res => $set(item, 'icon', res.url)">
                       <img v-if="item.icon" :src="item.icon" class="avatar">
                       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -123,7 +125,7 @@ export default {
         scores: {
           difficult: 0
         },
-        skills: {}
+        skills: []
       }
     }
   },
@@ -170,29 +172,3 @@ export default {
   }
 }
 </script>
-
-<style type="text/css">
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409EFF;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 5rem;
-    height: 5rem;
-    line-height: 5rem;
-    text-align: center;
-  }
-  .avatar {
-    width: 5rem;
-    height: 5rem;
-    display: block;
-  }
-</style>

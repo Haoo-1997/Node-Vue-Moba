@@ -2,6 +2,9 @@ const express = require("express")
 
 const app = express()
 
+// 设置一个全局的密钥供面膜验证返回token时使用
+app.set('secret', 'as1f53af1fas')
+
 app.use(require('cors')())
 app.use(express.json())
 //静态托管uploads下的文件
