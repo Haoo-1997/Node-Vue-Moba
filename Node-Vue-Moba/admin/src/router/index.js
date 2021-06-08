@@ -64,13 +64,15 @@ const router = new VueRouter({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (!to.meta.isPubiolc && !localStorage.token) {
-//     if (to.path === '/login') {
-//       return next('/login')
-//     }
-//   }
-//   next()
-// })
+// 路由守卫，如果没有token去非登陆页面自动跳转回登陆页面
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPubiolc && !localStorage.token) {
+    if (to.path !== '/login') {
+      // console.log('need login')
+      return next('/login')
+    }
+  }
+  next()
+})
 
 export default router
