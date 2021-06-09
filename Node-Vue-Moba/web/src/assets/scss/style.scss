@@ -1,3 +1,4 @@
+@import './variables';
 // 全局样式重置
 
 * {
@@ -21,18 +22,6 @@ a {
    color: #999 
 }
 
-// colors
-$colors: (
-  "primary": #db9e3f,
-  "white": #fff,
-  "light": #f9f9f9,
-  "gray": #999,
-  "gray-1": #666,
-  "dark-1": #343440,
-  "dark": #222,
-  "black": #000,
-);
-
 @each $colorKey, $color in $colors {
     .text-#{$colorKey} {
         color: $color;
@@ -46,25 +35,23 @@ $colors: (
 // text align
 @each $var in (left, center, right) {
     .text-#{$var} { // #{}属性名定义
-        text-align: $var;
+        text-align: $var !important;
     }
 }
 
-// font size
-// 插件px to rem  通过alt+s更换基准像素，alt+z自动计算rem
-$base-font-size: 1rem;
-$font-sizes: (
-    xs: 0.7692, //10px
-    sm: 0.9231, //12px
-    md: 1,  //13px
-    lg: 1.0769, //14px
-    xl: 1.2308, //16px
-);
 
 @each $sizeKey, $size in $font-sizes {
     .fs-#{$sizeKey} {
         font-size: $size * $base-font-size
     }
+}
+
+// width,height
+.w-100 {
+    width: 100%
+}
+.h-100 {
+    height: 100%;
 }
 
 // flex
@@ -74,26 +61,16 @@ $font-sizes: (
 .flex-column{
     flex-direction: column
 }
+.flex-wrap {
+    flex-wrap: wrap;
+}
 
-$flex-jc: (
-    start: flex-start,
-    end: flex-end,
-    center: center,
-    between: space-between,
-    around: space-around,
-);
 @each $key, $value in $flex-jc {
     .jc-#{$key} {
         justify-content: $value;
     }
 }
 
-$flex-ai: (
-    start: flex-start,
-    end: flex-end,
-    center: center,
-    stretch: stretch,
-);
 @each $key, $value in $flex-ai {
     .ai-#{$key} {
         align-items: $value;
@@ -103,21 +80,6 @@ $flex-ai: (
 .flex-grow-1 {
     flex-grow: 1
 }
-
-// spacing
-// 0-5: 0
-// .mt-1 => margin top .pb-2 => padding bottom
-$spacing-types: (m: margin, p: padding);
-$spacing-directions: (t: top, r: right, b: bottom, l: left);
-$spacing-base-size: 1rem;
-$spacing-sizes: (
-    0: 0,
-    1: 0.25,
-    2: 0.5, 
-    3: 1, 
-    4: 1.5, 
-    5: 3
-);
 
 @each $typeKey, $type in $spacing-types {
     @each $sizeKey, $size in $spacing-sizes {
@@ -167,9 +129,102 @@ $spacing-sizes: (
     .nav-item {
         border-bottom: 3px solid transparent;
         padding-bottom: 0.2rem;
-        // & 表示active与nav-item同级
+        // & nav-item本身，因为active与nav-item同级
         &.active {
             border-bottom: 3px solid #fff;
         }
     }
 }
+
+// sprite
+.sprite-logo {
+	background: url('../images/index.png') no-repeat 0 72.588%;
+	background-size: 28.8462rem 35rem;
+	width: 2.3077rem;
+	height: 2.3077rem;
+}
+.sprite-download {
+    background: url('../images/index.png') no-repeat 18.73% 71.694%;
+	background-size: 28.8462rem 35rem;
+	width: 4.6154rem;
+	height: 1.8462rem;
+}
+.sprite {
+  background: url(../images/index.png) no-repeat 0 0;
+  background-size: 28.8462rem;
+  display: inline-block;
+  &.sprite-news {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.546% 15.517%;
+  }
+  &.sprite-story {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 90.483% 15.614%;
+  }
+  &.sprite-store {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 36.746% 0.924%;
+  }
+  &.sprite-experience {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 10.408% 15.517%;
+  }
+  &.sprite-newcomer {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 89.733% 1.266%;
+  }
+  &.sprite-inherited {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 36.467% 15.287%;
+  }
+  &.sprite-camp {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-public {
+    width: 1.7692rem;
+    height: 1.5385rem;
+    background-position: 0 96.207%;
+  }  
+  &.sprite-arrow {
+    width: 0.7692rem;
+    height: 0.7692rem;
+    background-position: 38.577% 52.076%;
+  }     
+}
+.sprite-version {
+    background: url(../images/version-icon.png) no-repeat 0 0;
+    background-size: 1.7692rem 1.5385rem;
+    width: 1.7692rem;
+    height: 1.5385rem;
+    display: inline-block;
+}
+.sprite-setting {
+    background: url(../images/djhj.png) no-repeat 0 0;
+    background-size: 1.7692rem 1.5385rem;
+    width: 1.7692rem;
+    height: 1.5385rem;
+    display: inline-block;
+}
+.sprite-ip {
+    background: url(../images/ipgc.png) no-repeat 0 0;
+    background-size: 1.7692rem 1.5385rem;
+    width: 1.7692rem;
+    height: 1.5385rem;
+    display: inline-block;
+}
+.sprite-interactive {
+    background: url(../images/cyhdy.png) no-repeat 0 0;
+    background-size: 1.7692rem 1.5385rem;
+    width: 1.7692rem;
+    height: 1.5385rem;
+    display: inline-block;
+}
+

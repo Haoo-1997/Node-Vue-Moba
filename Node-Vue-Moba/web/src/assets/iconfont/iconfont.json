@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1196941",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "12562553",
+      "name": "王者荣耀_1",
+      "font_class": "wangzherongyao_",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "14419802",
+      "name": "ellipsis",
+      "font_class": "ellipsis",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "15722643",
+      "name": "news",
+      "font_class": "news",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "15914484",
+      "name": "Back -MyTycoonPlace",
+      "font_class": "Active",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    }
+  ]
+}

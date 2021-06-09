@@ -24,8 +24,15 @@
 20. 客户端路由限制（beforeEach, meta）
 
 三、移动端网站
-1. "工具样式"概念和SASS（SCSS）
+1. "工具样式"概念和SASS(SCSS)
 2. 样式重置
 3. 网站色彩和字体定义(color, text)
+4. 通用flex布局样式定义(flex)
+5. 常用边距定义(margin, padding)
+6. 主页框架和顶部菜单
+7. 首页顶部轮播图(vue swiper)
+8. 使用精灵图片(sprite)
+9. 使用字体图标
+10. 卡片组件(card)
 
 
