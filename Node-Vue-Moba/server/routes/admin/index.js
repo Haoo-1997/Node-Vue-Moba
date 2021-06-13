@@ -35,7 +35,7 @@ module.exports = app => {
       queryOptions.populate = 'parent'
     }
     // 通过inflection转类名
-    const items = await req.Model.find().setOptions(queryOptions).limit(10)
+    const items = await req.Model.find().setOptions(queryOptions).limit(100)
     res.send(items)
   })
   // 资源详情
@@ -90,4 +90,5 @@ module.exports = app => {
       message: err.message
     })
   })
+
 }

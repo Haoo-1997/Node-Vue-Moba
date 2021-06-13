@@ -1,4 +1,4 @@
-@import './variables';
+@import './_variables.scss';
 // 全局样式重置
 
 * {
@@ -22,6 +22,10 @@ a {
    color: #999 
 }
 
+p {
+   line-height:2rem;
+}
+
 @each $colorKey, $color in $colors {
     .text-#{$colorKey} {
         color: $color;
@@ -39,6 +43,13 @@ a {
     }
 }
 
+// text overflow
+.text-ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 @each $sizeKey, $size in $font-sizes {
     .fs-#{$sizeKey} {
@@ -79,6 +90,10 @@ a {
 
 .flex-grow-1 {
     flex-grow: 1
+}
+
+.flex-shrink-1 {
+    flex-shrink: 1
 }
 
 @each $typeKey, $type in $spacing-types {
@@ -126,13 +141,30 @@ a {
 
 //nav
 .nav{
+    display: flex;
     .nav-item {
         border-bottom: 3px solid transparent;
         padding-bottom: 0.2rem;
         // & nav-item本身，因为active与nav-item同级
         &.active {
-            border-bottom: 3px solid #fff;
+            color: map-get($colors, 'primary');
+            border-bottom: 3px solid map-get($colors, 'primary');
         }
+    }
+    &.nav-inverse {
+        .nav-item {
+            color: map-get($colors, 'white');
+        }
+        &.active {
+            border-bottom: 3px solid map-get($colors, 'white');
+        }
+    }
+}
+
+// borders
+@each $dir in (top, right, bottom, left) {
+    .border-#{$dir} {
+        border-#{$dir}: 1px solid $border-color
     }
 }
 
@@ -226,5 +258,22 @@ a {
     width: 1.7692rem;
     height: 1.5385rem;
     display: inline-block;
+}
+
+// News
+.card-hotTopics {
+    color: #ff3636;
+    border: 1px solid #ff3636;
+    border-radius: 0.1923rem;
+}
+.card-ellipsis {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-news {
+    color: #1e96ab;
+    border: 1px solid #1e96ab;
+    border-radius: 0.1923rem;
 }
 

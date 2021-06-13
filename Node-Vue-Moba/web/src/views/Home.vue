@@ -70,40 +70,74 @@
       </div>
     </div>
     <!-- end of nav icons -->
-    <div class="card p-3 bg-white mt-3">
-      <div class="card-header d-flex ai-center">
-        <i class="iconfont icon-menu fs-xs"></i>
-        <div class="fs-xl flex-grow-1 px-2">新闻资讯</div>
-        <i class="iconfont icon-ellipsis text-gray-1"></i>
-      </div>
-      <div class="car-body">
 
-      </div>
-    </div>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
-  <p>aaaa</p>
+    <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
+      <template #items="{category}">
+        <router-link tag="div" :to="`/articles/${news._id}`"
+        class="py-2 d-flex" v-for="(news, i) in category.newsList" :key="i">
+          <span class="card-hotTopics fs-sm mr-1 card-ellipsis">{{news.categoryName}}</span>
+          <span class="flex-grow-1 text-dark-1 text-ellipsis pr-3">{{news.title}}</span>
+          <span class="text-gray">{{news.createdAt | date}}</span>
+        </router-link>
+      </template>
+    </m-list-card>
+
+    <m-list-card icon="wangzherongyao_" title="英雄列表" :categories="heroCats">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin: 0 -0.5rem">
+          <router-link 
+          class="p-2 text-center" tag="div"
+          style="width: 20%" v-for="(hero, i) in category.heroList" 
+          :key="i" :to="`/heroes/${hero._id}`">
+            <img :src="hero.avatar" class="w-100" style="border-radius: 0.1538rem;">
+            <div>{{hero.name}}</div>
+          </router-link>
+        </div>
+      </template>
+    </m-list-card>
+
+    <m-card title="精彩视频" icon="wangzherongyao_"></m-card>
+    <m-card title="图文攻略" icon="wangzherongyao_"></m-card>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+
 export default {
+  filters: {
+    date(val){
+      return dayjs(val).format('MM/DD')
+    }
+  },
   data () {
     return {
+        // Some Swiper option/callback...
         swiperOptions: {
           loop: true,
           autoplay: true,
           pagination: {
             el: '.pagination-home'
-          },
-          // Some Swiper option/callback...
-        }
+          }
+        },
+       newsCats: [],
+       heroCats: []
       }
+  },
+  methods: {
+    async fetchNewsCats () {
+      const res = await this.$http.get('news/list')
+      this.newsCats = res.data
+    },
+    async fetchHeroCats () {
+      const res = await this.$http.get('heroes/list')
+      this.heroCats = res.data
+    }
+  },
+
+  created () {
+    this.fetchNewsCats()
+    this.fetchHeroCats()
   }
 }
 </script>
